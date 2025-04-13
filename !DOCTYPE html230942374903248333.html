@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPC Risk Generator</title>
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      margin-bottom: 30px;
+      cursor: pointer;
+    }
+    .risk-box {
+      font-size: 3rem;
+      font-weight: bold;
+      padding: 20px;
+      margin: 0 auto;
+      background: #222;
+      border: 2px solid #444;
+      border-radius: 12px;
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>SPC RNG Outlook</h1>
+  <button onclick="rollRisk()">Roll Risk Level</button>
+  <div class="risk-box" id="riskDisplay">NONE</div>
+
+  <script>
+    const risks = [
+      { name: "HIGH", chance: 1 / 60 },
+      { name: "MDT",  chance: 1 / 25 },
+      { name: "ENH",  chance: 1 / 8 },
+      { name: "SLGT", chance: 1 / 4 },
+      { name: "MRGL", chance: 1 / 2 },
+      { name: "TSTM", chance: 2 / 3 },
+    ];
+
+    function rollRisk() {
+      for (let risk of risks) {
+        if (Math.random() < risk.chance) {
+          updateDisplay(risk.name);
+          return;
+        }
+      }
+      updateDisplay("NONE");
+    }
+
+    function updateDisplay(text) {
+      document.getElementById("riskDisplay").textContent = text;
+    }
+  </script>
+
+</body>
+</html>
